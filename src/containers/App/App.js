@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.scss';
 import { Button } from 'reactstrap';
+import './App.scss';
 
 class App extends Component {
   render() {
