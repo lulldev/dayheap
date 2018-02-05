@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import ControlBar from '../../components/ControlBar/ControlBar';
+import TaskBlock from '../../components/TaskBlock/TaskBlock';
 
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
-      <ControlBar />
+      <div>
+        <TaskBlock />
+      </div>
     );
   }
 }
