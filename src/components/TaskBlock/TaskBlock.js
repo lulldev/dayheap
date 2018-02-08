@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Card,
   ListGroup,
-  ListGroupItem,
   Container,
   Row,
   Col,
@@ -10,6 +9,7 @@ import {
 
 import './TaskBlock.scss';
 
+import Task from '../Task/Task';
 
 export default class TaskBlock extends Component {
   render() {
@@ -21,9 +21,9 @@ export default class TaskBlock extends Component {
               <h1 className="display-5 text-center">DAY</h1>
               <Card>
                 <ListGroup>
-                  <ListGroupItem>Cras justo odio</ListGroupItem>
-                  <ListGroupItem>Cras justo odio</ListGroupItem>
-                  <ListGroupItem>Cras justo odio</ListGroupItem>
+                  <Task />
+                  <Task />
+                  <Task />
                 </ListGroup>
               </Card>
             </Col>
@@ -31,9 +31,9 @@ export default class TaskBlock extends Component {
               <h1 className="display-5 text-center">HEAP</h1>
               <Card>
                 <ListGroup>
-                  <ListGroupItem>Cras justo odio</ListGroupItem>
-                  <ListGroupItem>Cras justo odio</ListGroupItem>
-                  <ListGroupItem>Cras justo odio</ListGroupItem>
+                  <Task />
+                  <Task />
+                  <Task />
                 </ListGroup>
               </Card>
             </Col>
