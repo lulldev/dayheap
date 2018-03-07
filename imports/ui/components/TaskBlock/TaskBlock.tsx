@@ -8,19 +8,16 @@ import {
 
 import Task from '../Task';
 
-export class TaskBoard extends React.Component<any, any> {
+export default class TaskBlock extends React.Component<any, any> {
   public render() {
     return (
       <Col lg={6}>
         <Panel>
           <ListGroup>
-            123
+            {this.props.tasks.map(task => (<Task task={task} key={task._id}/>))}
           </ListGroup>
         </Panel>
       </Col>
     );
   }
 }
-
-export default TaskBoard;
-//             {props.tasks.map(task => (<Task task={task} key={task._id}/>))}

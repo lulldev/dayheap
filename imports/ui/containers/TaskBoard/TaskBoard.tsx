@@ -26,6 +26,7 @@ export class TaskBoard extends React.Component<any, any> {
         <Grid>
           <Row className="show-grid">
             <TaskBlock tasks={this.tasks}/>
+            <TaskBlock tasks={this.tasks}/>
           </Row>
         </Grid>
       </div>

@@ -1,1 +1,1 @@
-export { TaskBlock } from './TaskBlock';
+export { default } from './TaskBlock';
