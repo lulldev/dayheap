@@ -16,9 +16,9 @@ import TaskBlock from '../../components/TaskBlock';
 export class TaskBoard extends React.Component<any, any> {
 
   private tasks: any = [
-    { _id: 1, text: 'This is task 1' },
-    { _id: 2, text: 'This is task 2' },
-    { _id: 3, text: 'This is task 3' },
+    { _id: 1, text: 'This is task 1', category: 'quot' },
+    { _id: 2, text: 'This is task 2', category: 'volgatech' },
+    { _id: 3, text: 'This is task 3', category: 'ood' },
   ];
   public render() {
     return (

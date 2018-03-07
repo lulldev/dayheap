@@ -2,13 +2,12 @@ import * as React from 'react';
 
 import { ListGroupItem } from 'react-bootstrap';
 
-require('./task.scss');
+import './task.scss';
 
 const Task = props => (
   <ListGroupItem className="task">
-    <p>{props.task ? props.task.text : 'test'}</p>
-    <span className="badge badge-success">Default</span>
-    <span className="badge badge-success">Default</span>
+    <div className="category">{props.task ? props.task.category : 'quot'}</div>
+    <p className="text">{props.task ? props.task.text : 'test'}</p>
   </ListGroupItem>
 );
 

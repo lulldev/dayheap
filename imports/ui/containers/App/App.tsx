@@ -1,4 +1,6 @@
 import * as React from 'react';
 
-const App = ({children}) => <div>{children}</div>;
+import './App.scss';
+
+const App = ({children}) => <div className="application">{children}</div>;
 export default App;
