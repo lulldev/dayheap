@@ -15,7 +15,7 @@ export default class TaskCreator extends React.Component<any, any> {
     return (
       <ListGroupItem>
         <form>
-          <FormGroup>
+          <FormGroup bsSize="small">
             <FormControl
               type="text"
               placeholder="Категория"
@@ -23,7 +23,7 @@ export default class TaskCreator extends React.Component<any, any> {
             <br/>
             <FormControl componentClass="textarea" placeholder="Текст задачи" />
           </FormGroup>
-          <Button>Сохранить</Button>
+          <Button bsSize="small">Сохранить</Button>
         </form>
       </ListGroupItem>
     );
