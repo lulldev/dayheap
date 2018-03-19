@@ -9,6 +9,8 @@ import {
   ButtonGroup,
 } from 'react-bootstrap';
 
+import TaskCreator from '../TaskCreator';
+
 import { ITask, ITaskState } from './ITask';
 import './Task.scss';
 
@@ -16,12 +18,16 @@ export default class Task extends React.Component<ITask, ITaskState> {
   private taskControlPopover: any;
   constructor() {
     super();
+    this.state = {
+      isShowFullText: false,
+      isTaskEditMode: false,
+    };
     this.taskControlPopover = (
       <Popover id="task-control-popover">
         <div className="text-center">
           <ButtonToolbar>
             <ButtonGroup bsSize="small">
-              <Button bsStyle="warning">
+              <Button onClick={this.editTask.bind(this)} bsStyle="warning">
                 <span className="glyphicon glyphicon-edit"></span>
               </Button>
               <Button bsStyle="success">
@@ -37,22 +43,26 @@ export default class Task extends React.Component<ITask, ITaskState> {
     );
   }
   public render() {
+    let taskViewState = <OverlayTrigger trigger="click" rootClose placement="top" overlay={this.taskControlPopover}>
+      <ListGroupItem className="task list-group-item">
+        <div className="description">
+          <div className="category">{this.props.task ? this.props.task.category : 'quot'}</div>
+          <p className="text">
+            {this.getTaskText()}
+            {this.isTaskTextLong() ? <Button bsStyle="link">Подробнее</Button> : ''}
+          </p>
+        </div>
+      </ListGroupItem>
+    </OverlayTrigger>;
+    if (this.state.isTaskEditMode) {
+      taskViewState = <TaskCreator category={this.props.task.category} text={this.props.task.text}/>;
+    }
     return (
-      <OverlayTrigger trigger="click" rootClose placement="top" overlay={this.taskControlPopover}>
-        <ListGroupItem className="task list-group-item">
-          <div className="description">
-            <div className="category">{this.props.task ? this.props.task.category : 'quot'}</div>
-            <p className="text">
-              {this.getTaskText()}
-              {this.isTaskTextLong() ? <Button bsStyle="link">Подробнее</Button> : ''}
-            </p>
-          </div>
-        </ListGroupItem>
-      </OverlayTrigger>
+      taskViewState
     );
   }
-  public handleClick() {
-    console.log('clicked');
+  public editTask() {
+    this.setState({ isTaskEditMode: !this.state.isTaskEditMode });
   }
   private isTaskTextLong() {
     return (this.props.task.text.length > 20);

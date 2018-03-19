@@ -4,4 +4,5 @@ export interface ITask {
 
 export interface ITaskState {
   isShowFullText: boolean;
+  isTaskEditMode: boolean;
 }
