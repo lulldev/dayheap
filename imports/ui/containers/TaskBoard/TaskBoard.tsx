@@ -23,8 +23,8 @@ export class TaskBoard extends React.Component<any, any> {
       { _id: 3, text: 'This is task 3', category: 'volgatech' },
     ],
     today: [
-      { _id: 1, text: 'This is task 1', category: 'quot' },
-      { _id: 2, text: 'This is task 2', category: 'volgatech' },
+      { _id: 5, text: 'This is task 1', category: 'quot' },
+      { _id: 6, text: 'This is task 2', category: 'volgatech' },
     ],
   };
   public render() {

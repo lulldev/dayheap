@@ -11,7 +11,7 @@ import {
 
 import TaskCreator from '../TaskCreator';
 
-import { ITask, ITaskState } from './ITask';
+import { ITask, ITaskState, TaskViewMode } from './ITask';
 import './Task.scss';
 
 export default class Task extends React.Component<ITask, ITaskState> {
@@ -20,7 +20,7 @@ export default class Task extends React.Component<ITask, ITaskState> {
     super();
     this.state = {
       isShowFullText: false,
-      isTaskEditMode: false,
+      taskViewMode: TaskViewMode.default,
     };
     this.taskControlPopover = (
       <Popover id="task-control-popover">
@@ -41,35 +41,46 @@ export default class Task extends React.Component<ITask, ITaskState> {
         </div>
       </Popover>
     );
+
+    this.editTask = this.editTask.bind(this);
+    this.handleTaskClick = this.handleTaskClick.bind(this);
   }
   public render() {
-    let taskViewState = <OverlayTrigger trigger="click" rootClose placement="top" overlay={this.taskControlPopover}>
-      <ListGroupItem className="task list-group-item">
+    let taskView = <OverlayTrigger
+      trigger="click"
+      rootClose
+      placement="top"
+      onClick={this.handleTaskClick}
+      overlay={this.taskControlPopover}>
+      <ListGroupItem
+        className="task list-group-item">
         <div className="description">
           <div className="category">{this.props.task ? this.props.task.category : 'quot'}</div>
           <p className="text">
             {this.getTaskText()}
-            {this.isTaskTextLong() ? <Button bsStyle="link">Подробнее</Button> : ''}
           </p>
         </div>
       </ListGroupItem>
     </OverlayTrigger>;
-    if (this.state.isTaskEditMode) {
-      taskViewState = <TaskCreator category={this.props.task.category} text={this.props.task.text}/>;
+    if (this.state.taskViewMode === TaskViewMode.edit) {
+      taskView = <TaskCreator category={this.props.task.category} text={this.props.task.text}/>;
     }
     return (
-      taskViewState
+      taskView
     );
   }
-  public editTask() {
-    this.setState({ isTaskEditMode: !this.state.isTaskEditMode });
+  private editTask() {
+    this.setState({ taskViewMode: TaskViewMode.edit });
   }
-  private isTaskTextLong() {
-    return (this.props.task.text.length > 20);
+  private handleTaskClick() {
+    this.setState({ taskViewMode: TaskViewMode.fulltext });
   }
-
-  private getTaskText() {
+  private prepareTaskText(text): string {
+    return (text.length > 50) ? `${text.slice(0, 50)}...` : text;
+  }
+  private getTaskText(): string {
     const taskText = this.props.task ? this.props.task.text : 'test';
-    return this.isTaskTextLong() ? `${taskText.slice(0, 20)}...` : taskText;
+    return (this.state.taskViewMode !== TaskViewMode.fulltext) ?
+      this.prepareTaskText(taskText) : taskText;
   }
 }
